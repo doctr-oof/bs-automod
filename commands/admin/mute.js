@@ -41,6 +41,7 @@ module.exports = class MuteCommand extends commando.Command {
         let muteRole = message.guild.roles.get(config.mute_role_id);
 
         targetMember.addRole(muteRole)
+            .then(message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] ** USER MUTED: ** <@${user.id}> for ${time} minutes. [ISSUED BY: <@${message.author.id}> ]`))
             .then(message.channel.send(`Successfully muted <@${user.id}> for ${time} minutes! [ISSUED BY: <@${message.author.id}>]`).then(replyObject => replyObject.delete(30000)))
             .catch(console.error);
 
