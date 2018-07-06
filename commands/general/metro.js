@@ -37,33 +37,34 @@ module.exports = class MetroCommand extends commando.Command {
         rp(options)
             .then(($) => {
                 var embed = new RichEmbed()
-                    .setTitle("\\ Operation Metro")
+                    .setTitle("\\\ Operation Metro")
                     .setDescription("Live Stats for Operation Metro")
                     .setColor(0xFFFFFF)
                     
-
                 $('li.game-stat').each((i, elem) => {
                     var t = $(elem);
-                    var lType = t.find('.text-label').text().trim()
-                    var lValue = t.find('.text-lead').text().trim()
+                    var lType = t.find('.text-label').text().trim();
+                    var lValue = t.find('.text-lead').text().trim();
                     
                     
 
                     switch(lType) {
                         case "Playing":
-                           embed.addField("Players Online", lValue || "error"); 
+                           embed.addField("Players Online", lValue || "error", true); 
                            break;
                         case "Visits":
-                            embed.addField("Plays", lValue || "error"); 
+                            embed.addField("Plays", lValue || "error", true); 
                             break;
                         case "Updated":
-                            embed.addField("Last Updated", lValue || "error");
+                            embed.addField("Last Updated", lValue || "error", true);
                             break;
                         default:
                             break;
                     }
                 });
 
+
+                embed.addField("Link", "https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
                 message.channel.send({embed: embed});
             })
             .catch((err) => {
