@@ -49,7 +49,7 @@ module.exports = class MetroCommand extends commando.Command {
                     var lType = t.find('.text-label').text()
                     var lValue = t.find('.text-lead').text()
 
-                    console.log(lType + " :: " + lValue)
+                    str += lType + " " + lValue + "\n";
                 });
 
             })
