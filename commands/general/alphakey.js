@@ -23,6 +23,6 @@ module.exports = class MetroCommand extends commando.Command {
     }
 
     async run(message, {user}) {
-        message.reply(`I'm glad to hear you're interested in our project. We're currently giving away alpha keys at random. We will not give you a key by asking us. Keep and eye out for giveaways in <#453768671232393217> <3`);
+        message.reply(`I'm glad to hear you're interested in our project. We're currently giving away alpha keys at random. We will not give you a key by asking us. Keep an eye out for giveaways in <#453768671232393217> <3`);
     }
 }
