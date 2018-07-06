@@ -2,6 +2,10 @@ const { RichEmbed } = require("discord.js");
 const commando = require("discord.js-commando");
 const config = require("../../config.json");
 const perms = require("../../permissions.js");
+const rp = require('request-promise')
+const cheerio = require('cheerio')
+
+
 
 module.exports = class MetroCommand extends commando.Command {
     constructor(client) {
@@ -23,6 +27,29 @@ module.exports = class MetroCommand extends commando.Command {
     }
 
     async run(message, {user}) {
-        message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
+        const options = {
+            uri: `https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING`,
+            transform: function (body) {
+                return cheerio.load(body);
+            }
+        };
+
+        var embed = new RichEmbed()
+            .setTitle("Operation Metro")
+
+        rp(options)
+            .then(($) => {
+                $('li.game-stat').each((p, element) => {
+                    var dir = $(this)
+                    embed.addField(dir.parent().children()[2].Text, "as")
+                });
+            })
+            .catch((err) => {
+
+            });
+
+            message.reply({embed: embed});
+
+        // message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
     }
 }
