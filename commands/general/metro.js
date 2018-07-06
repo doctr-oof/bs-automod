@@ -38,7 +38,7 @@ module.exports = class MetroCommand extends commando.Command {
 
         var embed = new RichEmbed()
             .setTitle("\\ Operation Metro")
-            .setDescription(str)
+            .setDescription("Live Stats for Operation Metro")
             .setColor(0xFFFFFF)
 
         rp(options)
