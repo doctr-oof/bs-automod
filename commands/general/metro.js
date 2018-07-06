@@ -34,17 +34,14 @@ module.exports = class MetroCommand extends commando.Command {
             }
         };
 
-        console.log("TEST!!!!!!")
-
-        var embed;
-
         rp(options)
             .then(($) => {
-                embed = new RichEmbed()
+                var embed = new RichEmbed()
                     .setTitle("\\ Operation Metro")
                     .setDescription("Live Stats for Operation Metro")
                     .setColor(0xFFFFFF)
                     
+
                 $('li.game-stat').each((i, elem) => {
                     var t = $(elem);
                     var lType = t.find('.text-label').text().trim()
@@ -58,12 +55,12 @@ module.exports = class MetroCommand extends commando.Command {
                     }
                 });
 
+                message.channel.send({embed: embed});
             })
             .catch((err) => {
                 console.log(err);
             });
 
-        message.channel.send({embed: embed});
 
         // message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
     }
