@@ -26,6 +26,12 @@ module.exports = class MuteCommand extends commando.Command {
                         if (amount > 0 && amount <= 60) return true;
                         return "You must provide a time between 0 and 60 minutes! Need to go higher? Try again. You should be kicking them!";
                     }
+                },
+                {
+                    key: "reason",
+                    prompt: "Why are you muting them?",
+                    type: "string",
+                    default: ""
                 }
             ]
         });
@@ -36,12 +42,12 @@ module.exports = class MuteCommand extends commando.Command {
         return perms[this.name].some(id => message.member.roles.has(id)) || "You don't have permission to use this command!";
     }
 
-    async run(message, {user, time}) {
+    async run(message, {user, time, reason}) {
         let targetMember = message.guild.members.get(user.id)
         let muteRole = message.guild.roles.get(config.mute_role_id);
 
         targetMember.addRole(muteRole)
-            .then(message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **USER MUTED**- <@${user.id}> for ${time} minutes. [ISSUED BY: <@${message.author.id}> ]`))
+            .then(message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **USER MUTED**- <@${user.id}> for ${time} minutes. [ISSUED BY: <@${message.author.id}>, REASON: ${reason || "No reason specified."} ]`))
             .then(message.channel.send(`Successfully muted <@${user.id}> for ${time} minutes! [ISSUED BY: <@${message.author.id}>]`).then(replyObject => replyObject.delete(30000)))
             .catch(console.error);
 
