@@ -28,7 +28,7 @@ module.exports = class MetroCommand extends commando.Command {
 
     async run(message, {user}) {
         const options = {
-            uri: `https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING`,
+            uri: `https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING#!/about`,
             transform: function (body) {
                 return cheerio.load(body);
             }
@@ -43,11 +43,10 @@ module.exports = class MetroCommand extends commando.Command {
 
         rp(options)
             .then(($) => {
-                console.log($);
-
-                $('li').each((i, elem) => {
-                    var t = $(this).html();
-                    str += "x " + t;
+                
+                $('li.game-stat').each((i, elem) => {
+                    var t = $(elem);
+                    console.log(t)
                 });
 
             })
