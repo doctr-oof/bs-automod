@@ -22,7 +22,12 @@ module.exports = class SuperMuteCommand extends commando.Command {
                     key: "time",
                     prompt: "How long am I super-muting for?",
                     type: "integer"
-                }
+                },
+                {
+                    key: "reason",
+                    prompt: "Why are you muting them?",
+                    type: "string"
+                } // made this 100% non-optional if someone is super muted you MUST supply a reason.
             ]
         });
     }
@@ -32,11 +37,12 @@ module.exports = class SuperMuteCommand extends commando.Command {
         return perms[this.name].some(id => message.member.roles.has(id)) || "You don't have permission to use this command!";
     }
 
-    async run(message, {user, time}) {
+    async run(message, {user, time, reason}) {
         let targetMember = message.guild.members.get(user.id)
         let muteRole = message.guild.roles.get(config.mute_role_id);
 
         targetMember.addRole(muteRole)
+             .then(message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **USER SUPER-MUTED**- <@${user.id}> for ${time} minutes. [ISSUED BY: <@${message.author.id}>, REASON: ${reason || "No reason specified."} ]`))
             .then(message.channel.send(`Successfully super-muted <@${user.id}> for ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
             .catch(console.error);
 

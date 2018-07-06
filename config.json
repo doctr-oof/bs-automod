@@ -1,6 +1,6 @@
 {
     "version": "1.4.12",
-    "default_messages": [ "Achieving Sentience", "The Spying Game o-o" ],
+    "default_messages": [ "Achieving Sentience", "The Spying Game o-o", "Playing Operation Metro Alpha", "Stay Wet!!" ],
     "default_prefix": ".",
     "default_role": "Regular Member",
     "notify_role_id": "462660150440886272",
