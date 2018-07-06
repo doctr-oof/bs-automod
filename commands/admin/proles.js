@@ -9,7 +9,7 @@ module.exports = class PrintRolesCommand extends commando.Command {
             name: "proles",
             aliases: [ "roles" ],
             group: "admin",
-            memberName: "roles",
+            memberName: "proles",
             description: "Outputs all roles [name->id].",
             examples: [ "proles" ],
             userPermissions: [ "MANAGE_ROLES", "MUTE_MEMBERS" ],
@@ -26,11 +26,11 @@ module.exports = class PrintRolesCommand extends commando.Command {
 
 
         let roleEmbed = new RichEmbed()
-        .setTitle("Role Sheet")
-        .setColor(0xFFFFFF)
+            .setTitle("Role Sheet")
+            .setColor(0xFFFFFF)
 
-        message.guild.roles.forEach((role) => {
-            roleEmbed.addField(role.name, role.id)   
+        guild.roles.forEach((role) => {
+            roleEmbed.addField(role.name, role.id);
         })
 
         message.channel.send({embed: roleEmbed});
