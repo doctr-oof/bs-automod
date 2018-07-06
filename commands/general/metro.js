@@ -47,11 +47,20 @@ module.exports = class MetroCommand extends commando.Command {
                     var lType = t.find('.text-label').text().trim()
                     var lValue = t.find('.text-lead').text().trim()
                     
-                    console.log(typeof(lType) + " :: " + lValue + (lType == "Playing").toString())
+                    
 
-                    if (lType == "Playing") {
-                        console.log("ADDING EMBED!!!!!!!!")
-                        embed.addField("Players Online", lValue || "1");
+                    switch(lType) {
+                        case "Playing":
+                           embed.addField("Players Online", lValue || "error"); 
+                           break;
+                        case "Visits":
+                            embed.addField("Plays", lValue || "error"); 
+                            break;
+                        case "Updated":
+                            embed.addField("Last Updated", lValue || "error");
+                            break;
+                        default:
+                            break;
                     }
                 });
 
