@@ -23,16 +23,12 @@ module.exports = class PrintRolesCommand extends commando.Command {
 
     async run(message, {user}) {
         let guild = message.guild;
-
-
-        let roleEmbed = new RichEmbed()
-            .setTitle("Role Sheet")
-            .setColor(0xFFFFFF)
+        let roleMsg = "**ROLES**-\n";
 
         guild.roles.forEach((role) => {
-            roleEmbed.addField(role.name, role.id);
+            roleMsg += `**${role.name}** :: ${role.id} \n`
         })
 
-        message.channel.send({embed: roleEmbed});
+        message.channel.send(roleMsg);
     }
 }
