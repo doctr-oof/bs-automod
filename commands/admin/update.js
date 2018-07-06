@@ -1,5 +1,6 @@
 const commando = require("discord.js-commando");
 const config = require("../../config.json");
+const util = require("../../utils.js");
 const { exec } = require("child_process");
 
 module.exports = class UpdateCommand extends commando.Command {
@@ -18,7 +19,8 @@ module.exports = class UpdateCommand extends commando.Command {
     }
 
     async run(message) {
-        message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **BOT UPDATE** - I'm updating.... hopefully this doesn't break. BRB!`);
+        let log = util.embed(config.log_color, "GitHub Update Pull Requested", `${message.author} requested I shut down and pull my new code from GitHub. BRB! :)`);
+        message.guild.channels.get(config.logging_channel).send({ embed: log });
         message.delete().then(() => {
             this.client.destroy();
             exec('C:\\discord-bots\\bs-automod\\run.bat', (err) => {
