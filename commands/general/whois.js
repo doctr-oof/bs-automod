@@ -6,7 +6,7 @@ module.exports = class WhoisCommand extends commando.Command {
     constructor(client) {
         super(client, {
             name: "whois",
-            group: "admin",
+            group: "general",
             memberName: "whois",
             description: "Finds information on supplied user.",
             examples: [ "whois @doctr_oof" ],

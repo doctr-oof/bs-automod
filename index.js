@@ -21,30 +21,31 @@ var guild;
 // Initialize Events and setPresence Interval
 function initBot() {
     client.on("messageDelete", message => {
-        if (message.author.bot || message.member.roles.find("name", "Ballistic Studios") || message.content.startsWith(config.default_prefix)) return;
-
-        let date = new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
-        channels.logging.send(`[${date}] **MESSAGE DELETED** - <@${message.author.id}> - <#${message.channel.id}> - ${message.cleanContent || "<media content>"}`);
+        //if (message.author.bot || message.member.roles.find("name", "Ballistic Studios") || message.content.startsWith(config.default_prefix)) return;
+        //channels.logging.send(`[${util.timestamp()}] **MESSAGE DELETED** - <@${message.author.id}> - <#${message.channel.id}> - ${message.cleanContent || "<media content>"}`);
+        let log = util.embed(0xffffff, "Message Deleted", "")
+                    .addField("Author", message.author.id, true)
+                    .addField("Channel", message.channel, true)
+                    .addField("Content", message.cleanContent || "<media-content>", true)
+        
+        channels.logging.send({ embed: log });
     });
 
     client.on("guildMemberAdd", member => {
-        let date = new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
         let defaultRoles = [ ];
 
         defaultRoles.push(guild.roles.find("name", config.default_role));
         defaultRoles.push(guild.roles.find("name", config.notify_role_id));
         member.addRoles(defaultRoles).catch(console.error);
 
-        channels.logging.send(`[${date}] **MEMBER JOINED** - <@${member.id}>`);
+        channels.logging.send(`[${util.timestamp()}] **MEMBER JOINED** - <@${member.id}>`);
         channels.lounge.send(`**SWOOP SWOOP!** We have a new member of the server! Everyone give a warm welcome to <@${member.id}>!\nBe sure to read <#453768693139111936> before you do ANYTHING!`)
             .then(messageObject => messageObject.delete(30000))
             .catch(console.error);
     });
 
     client.on("guildMemberRemove", member => {
-        let date = new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
-
-        channels.logging.send(`[${date}] **MEMBER LEFT** - ${member.user.username}`);
+        channels.logging.send(`[${util.timestamp()}] **MEMBER LEFT** - ${member.user.username}`);
         channels.lounge.send(`:wave: Adios **${member.user.username}**. You might be missed... (probably not)`)
             .then(messageObject => messageObject.delete(30000))
             .catch(console.error);
@@ -71,7 +72,7 @@ client.once("ready", () => {
     initBot();
 
     guild.members.get(client.user.id).setNickname(`AutoMod v${config.version}`);
-    channels.logging.send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **BOT START** - I'm awake! You're using Ballistic Studios AutoMod v${config.version}`);
+    channels.logging.send(`[${util.timestamp()}] **BOT START** - I'm awake! You're using Ballistic Studios AutoMod v${config.version}`);
 });
 
 process.on("promiseRejection", console.error);

@@ -7,7 +7,7 @@ module.exports = class InviteCommand extends commando.Command {
     constructor(client) {
         super(client, {
             name: "invite",
-            group: "admin",
+            group: "general",
             memberName: "invite",
             description: "Get an invite to this channel.",
             examples: [ "invite" ],

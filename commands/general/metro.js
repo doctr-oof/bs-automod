@@ -1,11 +1,9 @@
 const { RichEmbed } = require("discord.js");
 const commando = require("discord.js-commando");
+const rp = require("request-promise");
+const cheerio = require("cheerio");
 const config = require("../../config.json");
 const perms = require("../../permissions.js");
-const rp = require('request-promise');
-const cheerio = require('cheerio');
-
-
 
 module.exports = class MetroCommand extends commando.Command {
     constructor(client) {

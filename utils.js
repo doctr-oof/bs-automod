@@ -1,9 +1,15 @@
 const discord = require("discord.js");
 
-exports.newEmbed = function(color, title, message) {
-    return new discord.RichEmbed()
-        .setTitle(title)
-        .setDescription(message)
-        .setColor(color)
-        .setFooter(new Date());
+module.exports = {
+    timestamp: function() {
+        return new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
+    },
+
+    embed: function(color, title, message) {
+        return new discord.RichEmbed()
+            .setTitle(title)
+            .setDescription(message)
+            .setColor(color)
+            .setFooter(new Date());
+    }
 }
