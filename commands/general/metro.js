@@ -45,9 +45,10 @@ module.exports = class MetroCommand extends commando.Command {
             .then(($) => {
 
                 $('li').each((i, elem) => {
-                    var t = $(this).text();
-                    str += t
+                    var t = $(this).html();
+                    str += "x " + t;
                 });
+
             })
             .catch((err) => {
                 console.log(err);
