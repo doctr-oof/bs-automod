@@ -1,0 +1,16 @@
+{
+  "name": "ballistic-automod",
+  "version": "1.0.0",
+  "description": "Role-request Auto-Moderator for Ballistic Studios Discord Server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "doctr_oof",
+  "license": "ISC",
+  "dependencies": {
+    "bufferutil": "^3.0.5",
+    "discord.js": "^11.3.2",
+    "discord.js-commando": "^0.10.0"
+  }
+}
