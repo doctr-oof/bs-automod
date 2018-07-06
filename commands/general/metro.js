@@ -43,10 +43,11 @@ module.exports = class MetroCommand extends commando.Command {
 
         rp(options)
             .then(($) => {
+
                 $('li[class="game-stat"]').each((p, element) => {
                     var dir = $(this);
                     var dtype = dir.next('p');
-                    str = str+dtype.Text;
+                    str += dtype.text();
                 });
             })
             .catch((err) => {
