@@ -39,20 +39,21 @@ module.exports = class MetroCommand extends commando.Command {
         var embed = new RichEmbed()
             .setTitle("Operation Metro")
 
+        var str = "";
+
         rp(options)
             .then(($) => {
                 $('li[class="game-stat"]').each((p, element) => {
-                    console.log("TEST " + $(this).next('p').Text);
                     var dir = $(this);
                     var dtype = dir.next('p');
-                    embed.addField(dir.parent().children()[2].Text, "as")
+                    str = str+dtype.Text;
                 });
             })
             .catch((err) => {
 
             });
 
-            message.reply({embed: embed});
+            message.reply(str);
 
         // message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
     }
