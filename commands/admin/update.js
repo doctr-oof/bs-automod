@@ -19,6 +19,7 @@ module.exports = class UpdateCommand extends commando.Command {
     }
 
     async run(message) {
+        console.log("Updating....");
         let log = util.embed(config.log_color, "GitHub Update Pull Requested", `${message.author} requested I shut down and pull my new code from GitHub. BRB! :)`);
         message.guild.channels.get(config.logging_channel).send({ embed: log });
         message.delete().then(() => {
