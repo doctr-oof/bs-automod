@@ -1,6 +1,6 @@
 // Ballistic Studios AutoMod (node.js variant)
 // Written by doctr_oof
-// LLARRY IS AWESOME!!!
+
 // Constants
 const commando = require("discord.js-commando");
 const config = require("./config.json");
