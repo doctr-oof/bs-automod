@@ -46,8 +46,8 @@ module.exports = class MetroCommand extends commando.Command {
                 
                 $('li.game-stat').each((i, elem) => {
                     var t = $(elem);
-                    var lType = t.next('p.text-label').text()
-                    var lValue = t.next('p.text-lead').text()
+                    var lType = t.find('.text-label').text()
+                    var lValue = t.find('.text-lead').text()
 
                     console.log(lType + " :: " + lValue)
                 });
