@@ -40,6 +40,7 @@ module.exports = class MetroCommand extends commando.Command {
         rp(options)
             .then(($) => {
                 $('li.game-stat').each((p, element) => {
+                    console.log($(this).Text)
                     var dir = $(this)
                     embed.addField(dir.parent().children()[2].Text, "as")
                 });
