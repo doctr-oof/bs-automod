@@ -49,7 +49,9 @@ module.exports = class MetroCommand extends commando.Command {
                     var lType = t.find('.text-label').text()
                     var lValue = t.find('.text-lead').text()
 
-                    str += "Type: " + lType + " :: Value:" + lValue + "\n";
+                    if (lType == "Playing") {
+                        embed.addField("Players Online", lValue);
+                    }
                 });
 
             })
@@ -57,7 +59,7 @@ module.exports = class MetroCommand extends commando.Command {
                 console.log(err);
             });
 
-            message.reply(str.substr(0, 999));
+            message.channel.send({embed: embed});
 
         // message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
     }
