@@ -65,7 +65,7 @@ client.once("ready", () => {
         .registerDefaultTypes()
         .registerDefaultGroups()
         .registerDefaultCommands({ ping: false, prefix: false, groups: false, load: false, unload: false, disable: false, enable: false, reload: false  })
-        .registerGroups([ [ "admin", "Admin" ], [ "fun", "Fun" ], [ "roles", "Roles" ] ])
+        .registerGroups([ [ "admin", "Admin" ], [ "fun", "Fun" ], [ "roles", "Roles" ], ["general", "General"] ])
         .registerCommandsIn(__dirname + "/commands");
 
     initBot();
