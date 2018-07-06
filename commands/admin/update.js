@@ -21,7 +21,7 @@ module.exports = class UpdateCommand extends commando.Command {
         message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **BOT UPDATE** - I'm updating.... hopefully this doesn't break. BRB!`);
         message.delete().then(() => {
             this.client.destroy();
-            exec('C:\\discord-bots\\bs-automod', (err) => {
+            exec('C:\\discord-bots\\bs-automod\\run.bat', (err) => {
                 if (err) console.error(err);
             });
         });
