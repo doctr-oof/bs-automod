@@ -86,7 +86,7 @@ process.on("uncaughtException", error => {
             if (err) console.error(err);
         });
         process.exit(1);
-    } catch {
+    } catch (error) {
         console.error("FAILED TO RECOVER FROM CRITICAL ERROR");
         process.exit(2);
     }
