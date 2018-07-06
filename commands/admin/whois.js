@@ -28,6 +28,16 @@ module.exports = class WhoisCommand extends commando.Command {
     }
 
     async run(message, {user, time}) {
+        Date.prototype.yyyymmdd = function() {
+            var mm = this.getMonth() + 1; // getMonth() is zero-based
+            var dd = this.getDate();
+          
+            return [this.getFullYear(),
+                    (mm>9 ? '' : '0') + mm,
+                    (dd>9 ? '' : '0') + dd
+                   ].join('');
+        }
+
         var newUser = message.guild.members.find("id", user.id)
 
         const embed = new RichEmbed()
@@ -38,7 +48,7 @@ module.exports = class WhoisCommand extends commando.Command {
             .addField('Status', newUser.presence.status, true)
             .addField('In Voice', newUser.voiceChannel, true)
             .addField('Joined Server', new Date(newUser.joinedTimestamp).toString("yyyyMMddHHmmss"))
-            .addField('Joined Discord', new Date(user.createdTimestamp).toString("yyyyMMddHHmmss"))
+            .addField('Joined Discord', new Date(user.createdTimestamp).yyyymmdd() + ";")
             .setColor(0xFF8C00)
 
        message.channel.send({embed})      
