@@ -2,8 +2,8 @@ const { RichEmbed } = require("discord.js");
 const commando = require("discord.js-commando");
 const config = require("../../config.json");
 const perms = require("../../permissions.js");
-const rp = require('request-promise')
-const cheerio = require('cheerio')
+const rp = require('request-promise');
+const cheerio = require('cheerio');
 
 
 
@@ -37,9 +37,9 @@ module.exports = class MetroCommand extends commando.Command {
         console.log("TEST!!!!!!")
 
         var embed = new RichEmbed()
-            .setTitle("Operation Metro")
-
-        var str = "";
+            .setTitle("\\ Operation Metro")
+            .setDescription(str)
+            .setColor(0xFFFFFF)
 
         rp(options)
             .then(($) => {
@@ -52,7 +52,7 @@ module.exports = class MetroCommand extends commando.Command {
                     console.log(typeof(lType) + " :: " + lValue + (lType == "Playing").toString())
 
                     if (lType == "Playing") {
-                        embed.addField("Players Online", lValue);
+                        embed.addField("Players Online", lValue || "1");
                     }
                 });
 
@@ -61,7 +61,7 @@ module.exports = class MetroCommand extends commando.Command {
                 console.log(err);
             });
 
-            message.channel.send({embed: embed});
+        message.channel.send({embed: embed});
 
         // message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
     }
