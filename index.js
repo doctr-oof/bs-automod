@@ -24,7 +24,7 @@ function initBot() {
         //if (message.author.bot || message.member.roles.find("name", "Ballistic Studios") || message.content.startsWith(config.default_prefix)) return;
         //channels.logging.send(`[${util.timestamp()}] **MESSAGE DELETED** - <@${message.author.id}> - <#${message.channel.id}> - ${message.cleanContent || "<media content>"}`);
         let log = util.embed(0xffffff, "Message Deleted", "")
-                    .addField("Author", message.author.id, true)
+                    .addField("Author", message.author, true)
                     .addField("Channel", message.channel, true)
                     .addField("Content", message.cleanContent || "<media-content>", true)
         
