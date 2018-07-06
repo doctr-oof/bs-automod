@@ -25,9 +25,9 @@ module.exports = class SuperMuteCommand extends commando.Command {
                 },
                 {
                     key: "reason",
-                    prompt: "Why are you muting them?",
+                    prompt: "Why are you super-muting them?",
                     type: "string"
-                } // made this 100% non-optional if someone is super muted you MUST supply a reason.
+                }
             ]
         });
     }
@@ -40,17 +40,22 @@ module.exports = class SuperMuteCommand extends commando.Command {
     async run(message, {user, time, reason}) {
         let targetMember = message.guild.members.get(user.id)
         let muteRole = message.guild.roles.get(config.mute_role_id);
+        let log = util.embed(config.log_color, "User Super-Muted", "")
+                    .addField("User", user, true)
+                    .addField("Issuer", message.author, true)
+                    .addField("Length", `${time} minutes`, true)
+                    .addField("Reason", reason);
 
         targetMember.addRole(muteRole)
-             .then(message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **USER SUPER-MUTED**- <@${user.id}> for ${time} minutes. [ISSUED BY: <@${message.author.id}>, REASON: ${reason || "No reason specified."} ]`))
-            .then(message.channel.send(`Successfully super-muted <@${user.id}> for ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
+             .then(message.guild.channels.get(config.logging_channel).send({embed: log}))
+            .then(message.reply(`Successfully super-muted ${user} for ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
             .catch(console.error);
 
         setTimeout(() => {
             if (typeof targetMember.roles.get(config.mute_role_id) == "undefined") return;
 
             targetMember.removeRole(muteRole)
-                .then(message.channel.send(`<@${user.id}> has been unmuted after ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
+                .then(message.channel.send(`${user} has been unmuted after ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
                 .catch(console.error);
         }, time * 60 * 1000);
 

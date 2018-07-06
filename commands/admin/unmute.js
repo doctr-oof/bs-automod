@@ -33,7 +33,7 @@ module.exports = class UnmuteCommand extends commando.Command {
         let muteRole = message.guild.roles.get(config.mute_role_id);
         
         targetMember.removeRole(muteRole)
-            .then(message.channel.send(`<@${user.id}> has been manually unmuted!`).then(replyObject => replyObject.delete(30000)))
+            .then(message.channel.send(`${user} has been manually unmuted!`).then(replyObject => replyObject.delete(30000)))
             .catch(console.error);
 
         message.delete();

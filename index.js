@@ -28,7 +28,7 @@ function initBotEvents() {
                     .addField("Channel", message.channel, true)
                     .addField("Content", message.cleanContent || "<media-content>", true);
 
-        channels.logging.send({ embed: log });
+        channels.logging.send({embed: log});
     });
 
     client.on("guildMemberAdd", member => {
@@ -38,7 +38,7 @@ function initBotEvents() {
         defaultRoles.push(guild.roles.get(config.default_role_id));
         defaultRoles.push(guild.roles.get(config.notify_role_id));
         member.addRoles(defaultRoles).catch(console.error);
-        channels.logging.send({ embed: log });
+        channels.logging.send({embed: log});
         channels.lounge.send(`**SWOOP SWOOP!** We have a new member of the server! Everyone give a warm welcome to ${member.user}!\nBe sure to read <#453768693139111936> before you do ANYTHING!`)
             .then(messageObject => messageObject.delete(30000))
             .catch(console.error);
@@ -46,7 +46,7 @@ function initBotEvents() {
 
     client.on("guildMemberRemove", member => {
         let log = util.embed(config.log_color, "Member Left", `${member.user.username} has left the server.`);
-        channels.logging.send({ embed: log });
+        channels.logging.send({embed: log});
         channels.lounge.send(`:wave: Adios **${member.user.username}**. You might be missed... (probably not)`);
     });
 }
@@ -74,7 +74,7 @@ client.once("ready", () => {
     setInterval(() => client.user.setPresence({ game: { name: config.default_messages[Math.floor(Math.random() * config.default_messages.length)] } }), 20000);
 
     let log = util.embed(config.log_color, "Bot Start!", `I'm awake! v${config.version}`);
-    channels.logging.send({ embed: log });
+    channels.logging.send({embed: log});
     console.log("Fully initialized the bot.");
 });
 

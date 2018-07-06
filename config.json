@@ -1,6 +1,6 @@
 {
-    "version": "1.4.163",
-    "default_messages": [ ".help", "OPERATION: METRO", "Stay Wet!!" ],
+    "version": "1.4.17",
+    "default_messages": [ ".help", "OPERATION: METRO", "Stay Hydrated!!" ],
     "default_prefix": ".",
     "default_role_id": "453775685631344651",
     "notify_role_id": "462660150440886272",

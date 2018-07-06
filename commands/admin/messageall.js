@@ -15,7 +15,7 @@ module.exports = class MessageAllCommand extends commando.Command {
             args: [
                 {
                     key: "time",
-                    prompt: "How long should I show the message in seconds? (0 = infinite)",
+                    prompt: "How long should I show the message for in seconds? (0 = infinite)",
                     type: "integer"
                 },
                 {

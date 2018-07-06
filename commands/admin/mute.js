@@ -1,6 +1,7 @@
 const commando = require("discord.js-commando");
 const perms = require("../../permissions.js");
 const config = require("../../config.json");
+const util = require("../../utils.js");
 
 module.exports = class MuteCommand extends commando.Command {
     constructor(client) {
@@ -45,17 +46,22 @@ module.exports = class MuteCommand extends commando.Command {
     async run(message, {user, time, reason}) {
         let targetMember = message.guild.members.get(user.id)
         let muteRole = message.guild.roles.get(config.mute_role_id);
+        let log = util.embed(config.log_color, "User Muted", "")
+                    .addField("User", user, true)
+                    .addField("Issuer", message.author, true)
+                    .addField("Length", `${time} minutes`, true)
+                    .addField("Reason", reason || "No Reason Specified");
 
         targetMember.addRole(muteRole)
-            .then(message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **USER MUTED**- <@${user.id}> for ${time} minutes. [ISSUED BY: <@${message.author.id}>, REASON: ${reason || "No reason specified."} ]`))
-            .then(message.channel.send(`Successfully muted <@${user.id}> for ${time} minutes! [ISSUED BY: <@${message.author.id}>]`).then(replyObject => replyObject.delete(30000)))
+            .then(message.guild.channels.get(config.logging_channel).send({embed: log}))
+            .then(message.reply(`Successfully muted ${user} for ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
             .catch(console.error);
 
         setTimeout(() => {
             if (typeof targetMember.roles.get(config.mute_role_id) == "undefined") return;
 
             targetMember.removeRole(muteRole)
-                .then(message.channel.send(`<@${user.id}> has been unmuted after ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
+                .then(message.channel.send(`${user} has been unmuted after ${time} minutes!`).then(replyObject => replyObject.delete(30000)))
                 .catch(console.error);
         }, time * 60 * 1000);
 
