@@ -52,6 +52,7 @@ module.exports = class MetroCommand extends commando.Command {
                     console.log(typeof(lType) + " :: " + lValue + (lType == "Playing").toString())
 
                     if (lType == "Playing") {
+                        console.log("ADDING EMBED!!!!!!!!")
                         embed.addField("Players Online", lValue || "1");
                     }
                 });
