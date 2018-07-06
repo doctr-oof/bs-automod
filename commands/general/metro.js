@@ -57,7 +57,7 @@ module.exports = class MetroCommand extends commando.Command {
                 console.log(err);
             });
 
-            message.reply(str);
+            message.reply(str.substr(0, 999));
 
         // message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
     }
