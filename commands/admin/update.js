@@ -27,7 +27,6 @@ module.exports = class UpdateCommand extends commando.Command {
             exec('C:\\discord-bots\\bs-automod\\run.bat', (err) => {
                 if (err) console.error(err);
             });
-            process.exit();
         });
     }
 }

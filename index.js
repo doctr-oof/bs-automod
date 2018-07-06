@@ -85,7 +85,6 @@ process.on("uncaughtException", error => {
         exec('C:\\discord-bots\\bs-automod\\run.bat', (err) => {
             if (err) console.error(err);
         });
-        process.exit(1);
     } catch (error) {
         console.error("FAILED TO RECOVER FROM CRITICAL ERROR");
         process.exit(2);
