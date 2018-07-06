@@ -20,7 +20,9 @@ module.exports = class UpdateCommand extends commando.Command {
     async run(message) {
         message.guild.channels.get(config.logging_channel).send(`[${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}] **BOT UPDATE** - I'm updating.... hopefully this doesn't break. BRB!`);
 
-        exec("../../run.bat");
+        exec("../../run.bat", (err) => {
+            if (err) console.error(err);
+        });
         process.exit();
 
         message.delete();
