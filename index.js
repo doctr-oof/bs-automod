@@ -65,11 +65,11 @@ client.once("ready", () => {
         .registerDefaultGroups()
         .registerDefaultCommands({ ping: false, prefix: false, groups: false, load: false, unload: false, disable: false, enable: false, reload: false  })
         .registerGroups([ [ "admin", "Admin" ], [ "fun", "Fun" ], [ "roles", "Roles" ], ["general", "General"] ])
-        .registerCommandsIn(__dirname + "/commands")
-        .then(initBotEvents);
+        .registerCommandsIn(__dirname + "/commands");
+    
+    initBotEvents();
 
     guild.members.get(client.user.id).setNickname(`AutoMod v${config.version}`);
-    channels.logging.send(`[${util.timestamp()}] **BOT START** - I'm awake! You're using Ballistic Studios AutoMod v${config.version}`);
     setInterval(() => client.user.setPresence({ game: { name: config.default_messages[Math.floor(Math.random() * config.default_messages.length)] } }), 20000);
 
     let log = util.embed(config.log_color, "Bot Start!", `I'm awake! v${config.version}`);
