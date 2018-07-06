@@ -48,6 +48,8 @@ module.exports = class MetroCommand extends commando.Command {
                     var t = $(elem);
                     var lType = t.find('.text-label').text()
                     var lValue = t.find('.text-lead').text()
+                    
+                    console.log(lType + " :: " + lValue)
 
                     if (lType == "Playing") {
                         embed.addField("Players Online", lValue);
