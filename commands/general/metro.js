@@ -36,14 +36,15 @@ module.exports = class MetroCommand extends commando.Command {
 
         console.log("TEST!!!!!!")
 
-        var embed = new RichEmbed()
-            .setTitle("\\ Operation Metro")
-            .setDescription("Live Stats for Operation Metro")
-            .setColor(0xFFFFFF)
+        var embed;
 
         rp(options)
             .then(($) => {
-                
+                embed = new RichEmbed()
+                    .setTitle("\\ Operation Metro")
+                    .setDescription("Live Stats for Operation Metro")
+                    .setColor(0xFFFFFF)
+                    
                 $('li.game-stat').each((i, elem) => {
                     var t = $(elem);
                     var lType = t.find('.text-label').text().trim()
