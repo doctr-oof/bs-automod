@@ -4,6 +4,7 @@
 // Constants
 const commando = require("discord.js-commando");
 const config = require("./config.json");
+const token = require("./token.json");
 const util = require("./utils.js");
 const client = new commando.Client({
     owner: [ "114432227378593792", "434334173973708801", "126518371066839041" ],
@@ -75,4 +76,4 @@ client.once("ready", () => {
 
 process.on("promiseRejection", console.error);
 client.on("error", console.error);
-client.login(config.default_token);
+client.login(token.default_token);

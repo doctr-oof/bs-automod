@@ -1,0 +1,23 @@
+{
+    "version": "1.3.64",
+    "default_messages": [ "Achieving Sentience", "The Spying Game o-o" ],
+    "default_prefix": ".",
+    "default_role": "Regular Member",
+    "notify_role_id": "462660150440886272",
+    "mute_role_id": "455046479703310358",
+    "guild": "453767413331394570",
+    "lounge_channel": "453783037168189450",
+    "logging_channel": "460277971798720522",
+    "role_channel": "460191952802021397",
+    "notify_channel": "459196389793071116",
+    "valid_roles": { 
+        "artist": "Artist",
+        "programmer": "Programmer",
+        "modeler": "Modeler",
+        "ui": "UI Designer",
+        "animator": "Animator",
+        "clothing": "Clothing Designer",
+        "composer": "Composer"
+    },
+    "notify_footnote": "*Don't want to receive pings? Opt-out by using the `.notifications off` command in <#460191952802021397>. You can opt-in again at any time by using `.notifications on`*."
+}
