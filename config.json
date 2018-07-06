@@ -1,5 +1,5 @@
 {
-    "version": "1.4.1",
+    "version": "1.4.12",
     "default_messages": [ "Achieving Sentience", "The Spying Game o-o" ],
     "default_prefix": ".",
     "default_role": "Regular Member",
