@@ -1,8 +1,8 @@
 {
     "version": "1.4.14",
-    "default_messages": [ "Achieving Sentience", "The Spying Game o-o", "Playing Operation Metro Alpha", "Stay Wet!!" ],
+    "default_messages": [ ".help", "OPERATION: METRO", "Stay Wet!!" ],
     "default_prefix": ".",
-    "default_role": "Regular Member",
+    "default_role_id": "453775685631344651",
     "notify_role_id": "462660150440886272",
     "mute_role_id": "455046479703310358",
     "guild": "453767413331394570",
@@ -10,6 +10,9 @@
     "logging_channel": "460277971798720522",
     "role_channel": "460191952802021397",
     "notify_channel": "459196389793071116",
+    "owner_ids": [ "114432227378593792", "434334173973708801", "126518371066839041" ],
+    "log_color": "0xD28C00",
+    "notify_footnote": "*Don't want to receive pings? Opt-out by using the `.notifications off` command in <#460191952802021397>. You can opt-in again at any time by using `.notifications on`*.",
     "valid_roles": { 
         "artist": "Artist",
         "programmer": "Programmer",
@@ -18,6 +21,5 @@
         "animator": "Animator",
         "clothing": "Clothing Designer",
         "composer": "Composer"
-    },
-    "notify_footnote": "*Don't want to receive pings? Opt-out by using the `.notifications off` command in <#460191952802021397>. You can opt-in again at any time by using `.notifications on`*."
+    }
 }

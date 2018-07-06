@@ -10,6 +10,6 @@ module.exports = {
             .setTitle(title)
             .setDescription(message)
             .setColor(color)
-            .setFooter(new Date());
+            .setFooter(this.timestamp());
     }
 }
