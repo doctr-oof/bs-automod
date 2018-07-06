@@ -53,7 +53,7 @@ function initBotEvents() {
 
 // Wait for ready state, then set up client
 client.once("ready", () => {
-    console.log("Got body 'ready' state!");
+    console.log("Got bot 'ready' state!");
 
     guild = client.guilds.get(config.guild);
     channels = {
