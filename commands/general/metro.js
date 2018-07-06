@@ -34,6 +34,8 @@ module.exports = class MetroCommand extends commando.Command {
             }
         };
 
+        console.log("TEST!!!!!!")
+
         var embed = new RichEmbed()
             .setTitle("Operation Metro")
 
