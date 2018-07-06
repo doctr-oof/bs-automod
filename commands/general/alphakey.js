@@ -6,11 +6,11 @@ const perms = require("../../permissions.js");
 module.exports = class MetroCommand extends commando.Command {
     constructor(client) {
         super(client, {
-            name: "metro",
+            name: "alphakey",
             group: "general",
-            memberName: "metro",
+            memberName: "alphakey",
             description: "Get Information about our upcoming game Operation Metro",
-            examples: [ "metro" ],
+            examples: [ "alphakey" ],
             throttling: { usages: 1, duration: 600 },
             guildOnly: true,
             userPermissions: [ "SEND_MESSAGES" ]
@@ -23,6 +23,6 @@ module.exports = class MetroCommand extends commando.Command {
     }
 
     async run(message, {user}) {
-        message.channel.send("https://www.roblox.com/games/1938317957/Operation-Metro-CLOSED-TESTING");
+        message.reply(`I'm glad to hear you're interested in our project. We're currently giving away alpha keys at random. We will not give you a key by asking us. Keep and eye out for giveaways in <#453768671232393217> <3`);
     }
 }
