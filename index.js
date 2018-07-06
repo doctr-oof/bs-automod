@@ -3,6 +3,7 @@
 
 // Constants
 const commando = require("discord.js-commando");
+const fs = require("fs");
 const config = require("./config.json");
 const token = require("./token.json");
 const util = require("./utils.js");
@@ -77,6 +78,19 @@ client.once("ready", () => {
     console.log("Fully initialized the bot.");
 });
 
-process.on("promiseRejection", console.error);
-client.on("error", console.error);
+process.on("uncaughtException", error => {
+    try {
+        fs.writeFileSync(`C:\AUTOMOD ERROR ${Date.now() / 1000}.txt`, error);
+        client.destroy();
+        exec('C:\\discord-bots\\bs-automod\\run.bat', (err) => {
+            if (err) console.error(err);
+        });
+        process.exit(1);
+    } catch {
+        console.error("FAILED TO RECOVER FROM CRITICAL ERROR");
+        process.exit(2);
+    }
+});
+
+client.on("error", error => channels.logging.send(error));
 client.login(token.default_token);
