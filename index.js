@@ -47,7 +47,9 @@ function initBotEvents() {
     client.on("guildMemberRemove", member => {
         let log = util.embed(config.log_color, "Member Left", `${member.user.username} has left the server.`);
         channels.logging.send({embed: log});
-        channels.lounge.send(`:wave: Adios **${member.user.username}**. You might be missed... (probably not)`);
+        channels.lounge.send(`:wave: Adios **${member.user.username}**. You might be missed... (probably not)`)
+            .then(msg => msg.delete(30000))
+            .catch(console.error);
     });
 }
 
