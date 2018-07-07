@@ -37,7 +37,8 @@ class EmbedUtil {
         return new RichEmbed()
                     .setAuthor(this.creator, this.creator_avatar)
                     .setDescription(this.getBody())
-                    .setFooter(moment(new Date()).tz("America/New_York").format("ddd MMM DD YY hh:mm:ss A") + " EST")
+                    .setTimestamp(new Date().toISOString())
+                    //.setFooter(moment(new Date()).tz("America/New_York").format("ddd MMM DD YY hh:mm:ss A") + " EST")
                     .setColor(config.log_colors[this.etype]);
     }
 }
