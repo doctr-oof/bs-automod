@@ -21,5 +21,13 @@
         "animator": "Animator",
         "clothing": "Clothing Designer",
         "composer": "Composer"
+    },
+    "log_colors": {
+        "unban": "0x08AC00",
+        "ban": "0xD0021B",
+        "kick": "0x08AC00",
+        "mute": "0xFF5245",
+        "super-mute": "0xFFCD45",
+        "general": "0xD28C00"
     }
 }

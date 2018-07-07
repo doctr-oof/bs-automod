@@ -1,6 +1,7 @@
 const commando = require("discord.js-commando");
 const perms = require("../../permissions.js");
 const config = require("../../config.json");
+const embed = require("../../embedutil.js");
 
 module.exports = class MessageAllCommand extends commando.Command {
     constructor(client) {
@@ -47,6 +48,12 @@ module.exports = class MessageAllCommand extends commando.Command {
             }
         });
 
+        let log = new embed(message.author, "general")
+            .addField("Task", "Global Message")
+            .addField("Message", data)
+            .construct()
+
+        message.guild.channels.get(config.logging_channel).send({ embed: log });
         message.delete();
     }
 }
