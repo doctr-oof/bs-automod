@@ -33,7 +33,7 @@ module.exports = class NotifyAllCommand extends commando.Command {
     }
 
     async run(message, {channel, data}) {
-        let role = message.guild.roles.get(config.notify2_role_id);
+        let role = message.guild.roles.get(config.notify_role_id);
         role.setMentionable(true).then(channel.send(`<@&${config.notify_role_id}> (from ${message.author}):\n${data}\n\n${config.notify_footnote}`));
 
         setTimeout(() => role.setMentionable(false), 1000);
