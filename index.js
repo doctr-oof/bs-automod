@@ -33,14 +33,14 @@ function initBotEvents() {
 
     client.on("guildMemberAdd", member => {
         let defaultRoles = [ ];
-        let log = util.embed(config.log_color, "Member Joined", `${member.user} has joined the server.`);
+        let log = util.embed(config.log_color, "Member Joined", `<@${member.user.id}> has joined the server.`); // still have to use <@> for embeds...?
 
         defaultRoles.push(guild.roles.get(config.default_role_id));
         defaultRoles.push(guild.roles.get(config.notify_role_id));
         member.addRoles(defaultRoles).catch(console.error);
         channels.logging.send({embed: log});
         channels.lounge.send(`**SWOOP SWOOP!** We have a new member of the server! Everyone give a warm welcome to ${member.user}!\nBe sure to read <#453768693139111936> before you do ANYTHING!`)
-            .then(messageObject => messageObject.delete(30000))
+            .then(messageObject => messageObject.delete(60000))
             .catch(console.error);
     });
 
