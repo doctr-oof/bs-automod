@@ -7,7 +7,7 @@ let notifications = [];
 let lastId = 0;
 
 function updateNotifications() {
-    fs.writeFileSync("C:\\wamp64\\www\\lootboxinteractive.com", JSON.stringify(notifications), function(err) {
+    fs.writeFileSync("C:\\wamp64\\www\\lootboxinteractive.com\\metro\\notification.json", JSON.stringify(notifications), function(err) {
         if (err) {
             return console.log(err);
         }
