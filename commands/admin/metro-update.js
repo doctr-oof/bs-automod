@@ -23,7 +23,7 @@ function updateGame() {
         id: id,
     }   
 
-    notifications.push(notificationObject)
+    notifications.push(updateObject)
 
     setTimeout(function( ) {
         
