@@ -14,7 +14,7 @@ function updateNotifications() {
     });
 }
 
-function addNoupdateGame() {
+function updateGame() {
     let id = lastId + 1;
     lastId = id;
 
