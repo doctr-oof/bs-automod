@@ -24,7 +24,7 @@ module.exports = class UpdateCommand extends commando.Command {
         message.guild.channels.get(config.logging_channel).send({ embed: log });
         message.delete().then(() => {
             this.client.destroy();
-            exec('C:\\discord-bots\\bs-automod\\run.bat', (err) => {
+            exec('cmd C:\\discord-bots\\bs-automod\\run.bat', (err) => {
                 if (err) console.error(err);
             });
         });
