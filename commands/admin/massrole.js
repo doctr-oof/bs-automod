@@ -1,6 +1,5 @@
 const commando = require("discord.js-commando");
 const perms = require("../../permissions.js");
-const config = require("../../config.json");
 
 module.exports = class MassRoleCommand extends commando.Command {
     constructor(client) {

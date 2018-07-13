@@ -1,7 +1,6 @@
 const commando = require("discord.js-commando");
 const perms = require("../../permissions.js");
 const config = require("../../config.json");
-const util = require("../../utils.js");
 const embed = require("../../embedutil.js");
 
 module.exports = class MuteCommand extends commando.Command {
@@ -12,7 +11,7 @@ module.exports = class MuteCommand extends commando.Command {
             group: "admin",
             memberName: "mute",
             description: "Mutes the targeted member for a set amount of minutes.",
-            examples: [ "mute @doctr_oof 10" ],
+            examples: [ "mute @doctr_oof 10 <reason_here>" ],
             userPermissions: [ "MANAGE_ROLES", "MUTE_MEMBERS" ],
             args: [
                 {
@@ -33,7 +32,7 @@ module.exports = class MuteCommand extends commando.Command {
                     key: "reason",
                     prompt: "Why are you muting them?",
                     type: "string",
-                    default: ""
+                    default: "No reason specified."
                 }
             ]
         });
@@ -47,18 +46,12 @@ module.exports = class MuteCommand extends commando.Command {
     async run(message, {user, time, reason}) {
         let targetMember = message.guild.members.get(user.id)
         let muteRole = message.guild.roles.get(config.mute_role_id);
-       /* let log = util.embed(config.log_colors["mute"], "", `**User:** ${user.username} (${user.id})\n**Time:** ${time} minutes\n**Reason:** ${reason || "No reason specified."}`)
-                    .setAuthor(`${message.author.username} (${message.author.id})`, message.author.avatarURL)
-                    .addField("User", user, true)
-                    .addField("Issuer", message.author, true)
-                    .addField("Length", `${time} minutes`, true)
-                    .addField("Reason", reason || "No Reason Specified");*/
 
         let log = new embed(message.author, "mute")
             .addField("Task", "Mute")
             .addField("User", `${user.username} (${user.id})`)
             .addField("Time", `${time} minutes`)
-            .addField("Reason", `${reason || "No reason specified."}`)
+            .addField("Reason", reason)
             .construct()
 
         targetMember.addRole(muteRole)

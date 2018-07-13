@@ -1,5 +1,5 @@
 {
-    "version": "1.4.18",
+    "version": "1.5.1",
     "default_messages": [ ".help", "OPERATION: METRO", "Stay Hydrated!!" ],
     "default_prefix": ".",
     "default_role_id": "453775685631344651",

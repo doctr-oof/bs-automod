@@ -7,6 +7,7 @@ const fs = require("fs");
 const config = require("./config.json");
 const token = require("./token.json");
 const util = require("./utils.js");
+const embed = require("./embedutil.js");
 const client = new commando.Client({
     owner: config.owner_ids, commandPrefix: config.default_prefix,
     disableEveryone: true, disabledEvents: [ "TYPING_START" ], unknownCommandResponse: false
@@ -22,18 +23,21 @@ function initBotEvents() {
     
     client.on("messageDelete", message => {
         if (message.author.bot || message.member.roles.find("name", "Ballistic Studios") || message.content.startsWith(config.default_prefix)) return;
-
-        let log = util.embed(config.log_color, "Message Deleted", "")
-                    .addField("Author", message.author, true)
-                    .addField("Channel", message.channel, true)
-                    .addField("Content", message.cleanContent || "<media-content>", true);
+        
+        let log = new embed(message.author, "general")
+                    .addField("Action", "Messaged Deleted")
+                    .addField("Channel", message.channel)
+                    .addField("Content", message.cleanContent || "<media-content>")
+                    .construct();
 
         channels.logging.send({embed: log});
     });
 
     client.on("guildMemberAdd", member => {
         let defaultRoles = [ ];
-        let log = util.embed(config.log_color, "Member Joined", `<@${member.user.id}> has joined the server.`); // still have to use <@> for embeds...?
+        let log = new embed(member.user, "general")
+                    .addField("Note", "User has joined the server")
+                    .construct();
 
         defaultRoles.push(guild.roles.get(config.default_role_id));
         defaultRoles.push(guild.roles.get(config.notify_role_id));
@@ -44,12 +48,16 @@ function initBotEvents() {
             .catch(console.error);
     });
 
+    client.on("guildBanAdd", (guild, user) => {
+        channels.lounge.send(`**${user.username}** has been permanently banned from the server! Good riddance. :)`);
+    });
+
     client.on("guildMemberRemove", member => {
-        let log = util.embed(config.log_color, "Member Left", `${member.user.username} has left the server.`);
+        let log = new embed(member.user, "general")
+                    .addField("Note", "User has left the server")
+                    .construct();
+
         channels.logging.send({embed: log});
-        channels.lounge.send(`:wave: Adios **${member.user.username}**. You might be missed... (probably not)`)
-            .then(msg => msg.delete(30000))
-            .catch(console.error);
     });
 }
 
@@ -69,7 +77,7 @@ client.once("ready", () => {
         .registerDefaultCommands({ ping: false, prefix: false, groups: false, load: false, unload: false, disable: false, enable: false, reload: false  })
         .registerGroups([ [ "admin", "Admin" ], [ "fun", "Fun" ], [ "roles", "Roles" ], ["general", "General"] ])
         .registerCommandsIn(__dirname + "/commands");
-    
+
     initBotEvents();
 
     guild.members.get(client.user.id).setNickname(`AutoMod v${config.version}`);
@@ -77,10 +85,11 @@ client.once("ready", () => {
 
     let log = util.embed(config.log_color, "Bot Start!", `I'm awake! v${config.version}`);
     channels.logging.send({embed: log});
-    console.log("Fully initialized the bot.");
+
+    console.log("Fully initialized the bot!");
 });
 
-process.on("uncaughtException", error => {
+/*process.on("uncaughtException", error => {
     try {
         fs.writeFileSync(`C:\AUTOMOD ERROR ${Date.now() / 1000}.txt`, error);
         client.destroy();
@@ -91,7 +100,7 @@ process.on("uncaughtException", error => {
         console.error("FAILED TO RECOVER FROM CRITICAL ERROR");
         process.exit(2);
     }
-});
+});*/
 
 client.on("error", error => channels.logging.send(error));
 client.login(token.default_token);

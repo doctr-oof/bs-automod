@@ -12,7 +12,7 @@ module.exports = class SuperMuteCommand extends commando.Command {
             group: "admin",
             memberName: "supermute",
             description: "Mutes the targeted member for a set amount of minutes.",
-            examples: [ "supermute @doctr_oof 10" ],
+            examples: [ "supermute @doctr_oof 10 <reason_here>" ],
             userPermissions: [ "MANAGE_ROLES", "MUTE_MEMBERS" ],
             args: [
                 {
@@ -42,14 +42,12 @@ module.exports = class SuperMuteCommand extends commando.Command {
     async run(message, {user, time, reason}) {
         let targetMember = message.guild.members.get(user.id)
         let muteRole = message.guild.roles.get(config.mute_role_id);
-      //  let log = util.embed(config.log_colors["super-mute"], "", `**User:** ${user.username} (${user.id})\n**Time:** ${time} minutes\n**Reason:** ${reason || "No reason specified."}`)
-         //   .setAuthor(`${message.author.username} (${message.author.id})`, message.author.avatarURL)
 
         let log = new embed(message.author, "super-mute")
                     .addField("Task", "Super Mute")
                     .addField("User", `${user.username} (${user.id})`)
                     .addField("Time", `${time} minutes`)
-                    .addField("Reason", `${reason || "No reason specified."}`)
+                    .addField("Reason", reason)
                     .construct()
 
                 

@@ -1,6 +1,5 @@
 const commando = require("discord.js-commando");
 const config = require("../../config.json");
-const util = require("../../utils.js");
 const embed = require("../../embedutil.js");
 
 module.exports = class UpdateCommand extends commando.Command {
@@ -10,7 +9,7 @@ module.exports = class UpdateCommand extends commando.Command {
             group: "admin",
             memberName: "shutdown",
             description: "Forces the bot to shut down for local testing.",
-            examples: [ "shutdown" ],
+            examples: [ "shutdown <reason_here>" ],
             args: [
                 {
                     key: "reason",

@@ -1,7 +1,5 @@
 const commando = require("discord.js-commando");
 const perms = require("../../permissions.js");
-const config = require("../../config.json");
-const { RichEmbed } = require('discord.js');
 
 module.exports = class PrintRolesCommand extends commando.Command {
     constructor(client) {
