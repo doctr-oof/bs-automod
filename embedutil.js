@@ -8,7 +8,7 @@ class EmbedUtil {
         
         this.creator_avatar = user.avatarURL;
         this.creator = `${user.username}  (${user.id})`;
-        this.embed = new RichEmbed()
+        this.embed = new RichEmbed();
         this.fields = [];
         this.etype = type;
         
@@ -38,7 +38,6 @@ class EmbedUtil {
                     .setAuthor(this.creator, this.creator_avatar)
                     .setDescription(this.getBody())
                     .setTimestamp(new Date().toISOString())
-                    //.setFooter(moment(new Date()).tz("America/New_York").format("ddd MMM DD YY hh:mm:ss A") + " EST")
                     .setColor(config.log_colors[this.etype]);
     }
 }
