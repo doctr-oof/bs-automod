@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js');
 const commando = require("discord.js-commando");
 const perms = require("../../permissions.js");
 
-class ShadesOfGrayCommand extends commando.Command {
+class LMGTFYCommand extends commando.Command {
     constructor(client) {
         super(client, {
             name: "lmgtfy",
@@ -35,4 +35,4 @@ class ShadesOfGrayCommand extends commando.Command {
     }
 }
 
-module.exports = ShadesOfGrayCommand;
+module.exports = LMGTFYCommand;
