@@ -20,10 +20,10 @@ var guild;
 // Initialize Events and setPresence Interval
 function initBotEvents() {
     console.log("Hooking all guild events...");
-    
+
     client.on("messageDelete", message => {
         if (message.author.bot || message.member.roles.find("name", "Ballistic Studios") || message.content.startsWith(config.default_prefix)) return;
-        
+
         let log = new embed(message.author, "general")
                     .addField("Action", "Messaged Deleted")
                     .addField("Channel", message.channel)
@@ -81,7 +81,10 @@ client.once("ready", () => {
     initBotEvents();
 
     guild.members.get(client.user.id).setNickname(`AutoMod v${config.version}`);
-    setInterval(() => client.user.setPresence({ game: { name: config.default_messages[Math.floor(Math.random() * config.default_messages.length)] } }), 20000);
+    setInterval(() => {
+        guild.members.get(client.user.id).setNickname(`AutoMod v${config.version}`);
+        client.user.setPresence({ game: { name: config.default_messages[Math.floor(Math.random() * config.default_messages.length)] } })
+    }, 20000);
 
     let log = util.embed(config.log_color, "Bot Start!", `I'm awake! v${config.version}`);
     channels.logging.send({embed: log});
